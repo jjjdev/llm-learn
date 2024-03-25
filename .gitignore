@@ -1,6 +1,9 @@
 # OSX
 .DS_Store
 
+# models folder
+dl.ai-efficiently_serving_llms/models/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
