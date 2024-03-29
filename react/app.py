@@ -2,7 +2,7 @@ from openai import OpenAI
 
 # create client
 client = OpenAI(
-    api_key='notneededsothisisjunk',
+    api_key='notactuallycallingChatGPTsothisisjunk',
     base_url='http://localhost:8080/v1'
 )
 
@@ -16,7 +16,15 @@ response = client.chat.completions.create(
         "content": "You are a helpful assistant."}, 
         {"role": "user", 
          "content": "What is ROI in reference to finance?"}], 
+         # add stream
+         stream=True
 )
 
-# print a response
-print (response)
+# print a full response
+#print (response)
+
+# print response text only
+#print (response.choices[0].message.content)
+
+for chunk in response:
+    print(chunk.choices[0].delta.content, flush=True, end="")
