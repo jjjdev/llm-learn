@@ -27,4 +27,8 @@ response = client.chat.completions.create(
 #print (response.choices[0].message.content)
 
 for chunk in response:
-    print(chunk.choices[0].delta.content, flush=True, end="")
+    # Print streamed tokens
+    #print(chunk)
+    response = chunk.choices[0].delta.content
+    if response is not None:
+        print(response, flush=True, end="")
