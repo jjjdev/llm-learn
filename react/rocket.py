@@ -4,7 +4,7 @@ import streamlit as st
 # create client
 client = OpenAI(
     api_key='notactuallycallingChatGPTsothisisjunk',
-    base_url='http://localhost:8080/v1'
+    base_url='http://localhost:8000/v1'
 )
 
 st.title('🚀 Llama Server')
