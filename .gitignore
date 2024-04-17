@@ -1,6 +1,9 @@
 # OSX
 .DS_Store
 
+# ide
+.idea
+
 # models folder
 dl.ai-efficiently_serving_llms/models/
 

@@ -13,10 +13,12 @@ client = OpenAI(
 # patched client
 client = instructor.patch(client=client)
 
+
 # Structure what we want extracted
 class ResponseModel(BaseModel):
-    ticker:str
-    days:int
+    ticker: str
+    days: int
+
 
 st.title('Rocket🚀 Llama Server')
 prompt = st.chat_input('Pass Your Prompt Here:')
@@ -26,34 +28,29 @@ if prompt:
     st.chat_message('user').markdown(prompt)
 
     # Function calling LLM call
+    # noinspection PyArgumentList
     response = client.chat.completions.create(
         # specify model we want to use
-        #model = '~/repos/models/mistral-7b-instruct-v0.2.Q4_K_M.gguf',
         model="mistral-function-calling",
         # specify prompt
-        messages=[{"role": "user", "content": prompt}], 
-        
-        # add stream
-        #stream=True
+        messages=[{"role": "user", "content": prompt}],
 
         # need to use Functionary Chat Format
-        response_model = ResponseModel,
+        response_model=ResponseModel,
     )
 
     st.chat_message("ai").markdown(response)
 
-   # if there's a problem, display an error to the user
+    # if there's a problem, display an error to the user
     try:
         prices = get_stock_prices(response.ticker, response.days)
         st.chat_message("ai").markdown(prices)
     except Exception as e:
         st.chat_message("ai").markdown('😥 Minor Error in my programming' + str(e))
 
-
     # with st.chat_message('ai'):
     #     completed_msg = ""
     #     message = st.empty()
-
 
     #     for chunk in response:
 
@@ -64,4 +61,7 @@ if prompt:
     #             #print(response, flush=True, end="")
 
 # the prompt
-    # summarize the stock price movements for AAPL for the past 7 days
+# summarize the stock price movements for AAPL for the past 7 days
+
+# command to start
+#streamlit run rocket-v2.py
