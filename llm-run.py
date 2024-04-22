@@ -13,8 +13,6 @@ model_file = "mistral-7b-openorca.Q4_K_M.gguf"
 #model_name = "TTheBloke/vicuna-13B-v1.5-16K-GGUF"
 #model_file = "vicuna-13b-v1.5-16k.Q4_K_M.gguf"
 
-model_name = ""
-
 # Download the model
 model_path = hf_hub_download(model_name, filename=model_file)
 
